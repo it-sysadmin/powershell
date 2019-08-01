@@ -1,7 +1,10 @@
 foreach ($u in Import-Csv c:\temp\users.csv) {
     #Tidy switches up by giving them a variable name
     $groupCommand = switch ($u.o365)
+    #$groupCommand = switch ($u)
     {
+        # {($u.o365 -eq 'y') -or ($u.exch -eq 'y')} {'Add-ADGroupMember'}
+        # {($u.o365 -eq 'n') -or ($u.exch -eq 'n')} {'Remove-ADGroupMember'}
         Y {'Add-ADGroupMember'}
         N {'Remove-ADGroupMember'}
     }
